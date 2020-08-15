@@ -1,4 +1,6 @@
+#![deny(warnings, clippy::all)]
 #[cfg(windows)]
+#[must_use]
 pub fn is_root() -> bool {
     use std::mem;
     use winapi::{
@@ -11,7 +13,6 @@ pub fn is_root() -> bool {
             winnt::{TokenElevation, TOKEN_ELEVATION, TOKEN_QUERY},
         },
     };
-
     let mut token = INVALID_HANDLE_VALUE;
     let mut elevated = false;
     unsafe {
@@ -29,16 +30,14 @@ pub fn is_root() -> bool {
                 elevated = elevation.TokenIsElevated != 0;
             }
         }
-
         if token != INVALID_HANDLE_VALUE {
             CloseHandle(token);
         }
     }
-
     elevated
 }
-
 #[cfg(unix)]
+#[must_use]
 pub fn is_root() -> bool {
     users::get_current_uid() == 0
 }
