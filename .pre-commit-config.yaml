@@ -3,11 +3,16 @@
   hooks:
   - id: fmt
     args: ['-v']
+    pass_filenames: false
   - id: cargo-check
     args: ['-v']
+    pass_filenames: false
   - id: cargo-check
     args: ['-v', '--target', 'x86_64-pc-windows-gnu']
+    pass_filenames: false
   - id: clippy
     args: ['-v']
+    pass_filenames: false
   - id: clippy
     args: ['-v', '--target', 'x86_64-pc-windows-gnu']
+    pass_filenames: false
