@@ -5,6 +5,7 @@ before_script:
   - apt-get install mingw-w64 build-essential -y
   - mkdir ~/.cargo -p
   - rustup component add rustfmt
+  - rustup component add clippy
   - rustup target add x86_64-pc-windows-gnu
   - echo -e '\n[target.x86_64-pc-windows-gnu]\nlinker = "x86_64-w64-mingw32-gcc"\nar = "x86_64-w64-mingw32-gcc-ar"' >> ~/.cargo/config.toml
   - rustc --version && cargo --version  # Print version info for debugging
