@@ -1,11 +1,11 @@
 [package]
 name = "is-root"
 description = "A simple library to detect whether you are root/admin or not"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["John Meow <j0hn.meow@ya.ru>"]
 edition = "2018"
 readme = "README.md"
-license-file = "LICENSE"
+license = "MIT"
 repository = "https://gitlab.com/johnmeow/is-root"
 keywords = ["sudo", "admin", "root", "system"]
 categories = ["os", "os::windows-apis", "os::unix-apis"]
@@ -17,3 +17,18 @@ users = "0.10"
 version = "0.3"
 default-features = false
 features = ["minwindef", "handleapi", "processthreadsapi", "securitybaseapi"]
+
+[badges]
+  [badges.gitlab]
+  repository = "johnmeow/is-root"
+
+  [badges.maintenance]
+  status = "as-is"
+
+  [badges.codecov]
+  repository = "johnmeow/is-root"
+  service = "gitlab"
+
+  [badges.coveralls]
+  repository = "johnmeow/is-root"
+  service = "gitlab"
