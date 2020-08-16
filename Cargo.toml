@@ -10,10 +10,6 @@ repository = "https://gitlab.com/johnmeow/is-root"
 keywords = ["sudo", "admin", "root", "system"]
 categories = ["os", "os::windows-apis", "os::unix-apis"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-
 [target.'cfg(unix)'.dependencies]
 users = "0.10"
 

@@ -1,7 +1,35 @@
 #![deny(warnings, clippy::all)]
-#[cfg(windows)]
+#![warn(missing_docs)]
+//! A simple library to detect whether you are root/admin or not
+//! ## Usage
+//! ```no_run
+//! use is_root::is_root;
+//!
+//! if is_root() {
+//!     println!("Doing something dangerous")
+//! } else {
+//!     eprintln!("Run me as root")
+//! }
+//! ```
+
+/// Returns `true` if user is root; `false` otherwise
+/// ```no_run
+/// use is_root::is_root;
+///
+/// if is_root() {
+///     println!("Doing something dangerous")
+/// } else {
+///     eprintln!("Run me as root")
+/// }
+/// ```
 #[must_use]
 pub fn is_root() -> bool {
+    is_root_internal()
+}
+
+#[cfg(windows)]
+#[must_use]
+fn is_root_internal() -> bool {
     use std::mem;
     use winapi::{
         ctypes::c_void,
@@ -38,6 +66,6 @@ pub fn is_root() -> bool {
 }
 #[cfg(unix)]
 #[must_use]
-pub fn is_root() -> bool {
+fn is_root_internal() -> bool {
     users::get_current_uid() == 0
 }
