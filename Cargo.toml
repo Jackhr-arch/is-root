@@ -1,7 +1,7 @@
 [package]
 name = "is-root"
 description = "A simple library to detect whether you are root/admin or not"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["John Meow <j0hn.meow@ya.ru>"]
 edition = "2018"
 readme = "README.md"
