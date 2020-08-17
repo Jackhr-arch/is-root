@@ -11,47 +11,29 @@ before_script:
   - rustc --version && cargo --version  # Print version info for debugging
 
 stages:
-  - format
   - lint
-  - check
   - test
   - deploy
 
-rustfmt:
-  stage: format
+cargo:fmt:
+  stage: lint
   script: cargo fmt -v -- --check
 
-cargo-clippy-unix: 
+cargo:clippy: 
   stage: lint
-  script: cargo clippy -v
-cargo-clippy-windows:
+  script: cargo clippy -v --target x86_64-pc-windows-gnu --target x86_64-unknown-linux-gnu -Zmultitarget
+
+cargo:check:
   stage: lint
-  script: cargo clippy -v --target x86_64-pc-windows-gnu
+  script: cargo check -v --target x86_64-pc-windows-gnu --target x86_64-unknown-linux-gnu -Zmultitarget
 
-cargo-check-unix:
-  stage: check
-  script: cargo check -v 
-cargo-check-windows: 
-  stage: check
-  script: cargo check -v --target x86_64-pc-windows-gnu
-
-cargo-test: 
+cargo:test: 
   script: cargo test -v
 
-amiroot-unix:
+examples:
   stage: deploy
   script:
-    - cargo build --release --example amiroot
-    - mv target/release/examples/amiroot .
+    - cargo build -v --release --examples --out-dir build -Zunstable-options --target x86_64-pc-windows-gnu --target x86_64-unknown-linux-gnu -Zmultitarget
   artifacts:
     paths:
-      - amiroot
-
-amiroot-windows:
-  stage: deploy
-  script:
-    - cargo build --release --example amiroot --target x86_64-pc-windows-gnu
-    - mv target/x86_64-pc-windows-gnu/release/examples/amiroot.exe .
-  artifacts:
-    paths:
-      - amiroot.exe
+      - build
