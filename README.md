@@ -1,3 +1,6 @@
+# About this
+This is a fork from [gitlab](https://gitlab.com/caralice/is-root)
+
 # `is-root`
 
 ![Downloads](https://img.shields.io/crates/d/is-root)

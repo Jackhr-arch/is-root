@@ -67,5 +67,6 @@ fn is_root_internal() -> bool {
 #[cfg(unix)]
 #[must_use]
 fn is_root_internal() -> bool {
-    users::get_current_uid() == 0
+    let uid = unsafe { libc::getuid() };
+    uid == 0
 }
